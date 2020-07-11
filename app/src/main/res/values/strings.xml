@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">MashiCommits</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_inicio">Inicio</string>
+    <string name="action_creditos">Créditos</string>
+    <string name="action_change_password">Cambiar Contraseña</string>
+    <string name="action_cuotas">Cuotas</string>
+    <string name="recuperaContra">Se le enviara a su correo un link que le permitirá reestablecer la contraseña</string>
+    <string name="olvidoContra"><u>Olvidé mi contraseña</u></string>
+    <string name="noDebe">Pagos al día</string>
+    <string name="debe">Pagos atrasados</string>
+</resources>

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/containerMain"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".MainActivity"
+    android:background="@android:color/white"
+    tools:showIn="@layout/activity_main">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <include layout="@layout/cabecera"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Bienvenido"
+            style="@android:style/TextAppearance.Large"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Usuario"
+            style="@android:style/TextAppearance.Large"/>
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/eUsuario"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:hint="Ingrese su usuario"
+                android:inputType="text">
+            </com.google.android.material.textfield.TextInputEditText>
+        </com.google.android.material.textfield.TextInputLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Contraseña"
+            style="@android:style/TextAppearance.Large"/>
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:boxStrokeColor="@android:color/black">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/eClave"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:hint="Ingrese su contraseña"
+                android:inputType="text">
+            </com.google.android.material.textfield.TextInputEditText>
+        </com.google.android.material.textfield.TextInputLayout>
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnIniciarSesion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Iniciar sesión">
+        </androidx.appcompat.widget.AppCompatButton>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/olvidoContra"
+            android:textColor="@color/holo_blue_darkest"
+            android:clickable="true"
+            android:id="@+id/tvRecuperaContra">
+        </TextView>
+        <ProgressBar
+            android:id="@+id/cargaImagen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="invisible">
+        </ProgressBar>
+        <TextView
+            android:id="@+id/cargaTexto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Validando credenciales por favor espere"
+            android:visibility="invisible">
+        </TextView>
+    </LinearLayout>
+</RelativeLayout>

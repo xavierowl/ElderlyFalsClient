@@ -1,0 +1,15 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.mashicommits.MainActivity">
+    <item
+        android:id="@+id/action_change_password"
+        android:orderInCategory="100"
+        android:title="@string/action_change_password"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_cuotas"
+        android:orderInCategory="100"
+        android:title="@string/action_cuotas"
+        app:showAsAction="never" />
+</menu>
