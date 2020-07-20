@@ -8,8 +8,8 @@
         android:title="@string/action_change_password"
         app:showAsAction="never" />
     <item
-        android:id="@+id/action_cuotas"
+        android:id="@+id/action_transacion"
         android:orderInCategory="100"
-        android:title="@string/action_cuotas"
+        android:title="@string/action_transaccion"
         app:showAsAction="never" />
 </menu>

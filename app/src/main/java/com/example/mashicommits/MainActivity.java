@@ -55,10 +55,10 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         visualizarCarga(true);
 
-        //Setting the surface for consume the loval REST API
+        //Se establece el escenario para realizar las peticiones web
         OkHttpClient client = new OkHttpClient.Builder()
-                .connectTimeout(100, TimeUnit.SECONDS)
-                .readTimeout(100,TimeUnit.SECONDS).build();
+                .connectTimeout(60, TimeUnit.SECONDS)
+                .readTimeout(60,TimeUnit.SECONDS).build();
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://10.0.2.2:8080/Banco_Servidor/srv/cliente/")
@@ -70,8 +70,9 @@ public class MainActivity extends AppCompatActivity {
         tvRecuperaContra.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent recuperaContra = new Intent(MainActivity.this, RecuperaPassword.class);
-                startActivityForResult(recuperaContra,1);
+                //Acción al dar tap en el texto olvidé mi contraseña
+                //Intent recuperaContra = new Intent(MainActivity.this, RecuperaPassword.class);
+                //startActivityForResult(recuperaContra,1);
             }
         });
 
@@ -89,11 +90,12 @@ public class MainActivity extends AppCompatActivity {
                                 String respuesta = response.body().string();
                                 String logueado = respuesta.substring(0, 7);
                                 if(logueado.equals("exitoso")){
+                                    visualizarCarga(false);
                                     String cuenta = respuesta.substring(7,respuesta.length());
                                     Intent inicio = new Intent(MainActivity.this, Inicio.class);
                                     inicio.putExtra("cuenta", cuenta);
+                                    inicio.putExtra("correo", eUsuario.getText().toString());
                                     startActivityForResult(inicio, 1);
-                                    visualizarCarga(false);
                                 }
                                 else{
                                     Snackbar.make(v, "Las credenciales son incorrectas.",

@@ -68,7 +68,8 @@
             android:text="@string/olvidoContra"
             android:textColor="@color/holo_blue_darkest"
             android:clickable="true"
-            android:id="@+id/tvRecuperaContra">
+            android:id="@+id/tvRecuperaContra"
+            android:visibility="invisible">
         </TextView>
         <ProgressBar
             android:id="@+id/cargaImagen"

@@ -23,4 +23,7 @@ public interface APIService {
 
     @GET("getCredito")
     Call<Credito> getCredito();
+
+    @GET("cambiarClave")
+    Call<ResponseBody> cambiarClave(@Query("correo") String correo);
 }

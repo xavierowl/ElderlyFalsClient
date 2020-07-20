@@ -12,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".RecuperaPassword"></activity>
+        <activity android:name=".Transaccion"></activity>
+        <activity android:name=".RecuperaPassword" />
         <activity android:name=".CambioPassword" />
         <activity
             android:name=".Inicio"

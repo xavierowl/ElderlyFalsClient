@@ -1,6 +1,7 @@
 package com.example.mashicommits;
 
 import android.content.Intent;
+import android.content.IntentSender;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -40,13 +41,20 @@ public class Inicio extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        String cuenta = getIntent().getStringExtra("cuenta");
-
         rvCreditos = findViewById(R.id.rVCreditos);
 
-        //Adaptador que contendrá las cuotas del crédito
-        AdapterCredito adaptador = new AdapterCredito();
+        setAdapterCreditos(rvCreditos);
 
+        rvCreditos.setLayoutManager(new LinearLayoutManager(this));
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        setAdapterCreditos(rvCreditos);
+    }
+
+    public void setAdapterCreditos(RecyclerView rvCreditos){
         OkHttpClient client = new OkHttpClient.Builder()
                 .connectTimeout(100, TimeUnit.SECONDS)
                 .readTimeout(100,TimeUnit.SECONDS).build();
@@ -56,11 +64,17 @@ public class Inicio extends AppCompatActivity {
                 .client(client)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
+
+        String cuenta = getIntent().getStringExtra("cuenta");
         APIService apiService = retrofit.create(APIService.class);
+
         Call<List<Credito>> result = apiService.getCreditos(Integer.valueOf(cuenta));
         result.enqueue(new Callback<List<Credito>>() {
             @Override
             public void onResponse(Call<List<Credito>> call, Response<List<Credito>> response) {
+                //Adaptador que contendrá las cuotas del crédito
+                AdapterCredito adaptador = new AdapterCredito();
+                //Snackbar.make(findViewById(R.id.containerInicio), "Lllega al servicio", Snackbar.LENGTH_LONG).show();
                 for(int x = 0; x < response.body().size(); x++){
                     Credito credito = new Credito();
                     credito.setFechaVencimiento(response.body().get(x).getFechaVencimiento());
@@ -69,6 +83,7 @@ public class Inicio extends AppCompatActivity {
                     credito.setTipo(response.body().get(x).getTipo());
                     adaptador.addCredito(credito);
                 }
+                rvCreditos.setAdapter(adaptador);
             }
 
             @Override
@@ -76,9 +91,6 @@ public class Inicio extends AppCompatActivity {
                 System.out.println("Se ah producido el siguiente error: "+t.getMessage());
             }
         });
-
-        rvCreditos.setAdapter(adaptador);
-        rvCreditos.setLayoutManager(new LinearLayoutManager(this));
     }
 
     @Override
@@ -97,11 +109,13 @@ public class Inicio extends AppCompatActivity {
         //noinspection SimplifiableIfStatement
         switch (id) {
             case R.id.action_change_password:
-                Intent cambio = new Intent(Inicio.this, CambioPassword.class);
-                startActivity(cambio);
+                Intent recuperaContra = new Intent(Inicio.this, RecuperaPassword.class);
+                recuperaContra.putExtra("correo", getIntent().getStringExtra("correo"));
+                startActivityForResult(recuperaContra,1);
                 return true;
-            case R.id.action_cuotas:
-                System.out.println("Cuotas");
+            case R.id.action_transacion:
+                Intent transaccion = new Intent(Inicio.this, Transaccion.class);
+                startActivityForResult(transaccion, 1);
                 return true;
         }
 

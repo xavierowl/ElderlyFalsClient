@@ -9,4 +9,6 @@
     <string name="olvidoContra"><u>Olvidé mi contraseña</u></string>
     <string name="noDebe">Pagos al día</string>
     <string name="debe">Pagos atrasados</string>
+    <string name="action_transaccion">Transacción</string>
+    <string name="title_activity_transaccion">Transaccion</string>
 </resources>
