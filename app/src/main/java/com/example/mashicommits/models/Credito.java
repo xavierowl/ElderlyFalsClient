@@ -1,5 +1,9 @@
 package com.example.mashicommits.models;
 
+import androidx.annotation.NonNull;
+
+import com.example.mashicommits.enums.TipoCredito;
+
 import java.io.Serializable;
 import java.util.List;
 

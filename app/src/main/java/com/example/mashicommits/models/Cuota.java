@@ -1,5 +1,7 @@
 package com.example.mashicommits.models;
 
+import com.example.mashicommits.enums.EstadoCuota;
+
 import java.io.Serializable;
 import java.time.LocalDate;
 
@@ -100,7 +102,7 @@ public class Cuota implements Serializable {
 		}
 		*/
 	}
-	
+
 	/**
 	 * Abona el monto especificado a la cuota.
 	 */

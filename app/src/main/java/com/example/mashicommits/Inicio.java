@@ -19,6 +19,7 @@ import com.google.android.material.snackbar.Snackbar;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -31,8 +32,10 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.converter.simplexml.SimpleXmlConverterFactory;
 
-public class Inicio extends AppCompatActivity {
+public class Inicio extends AppCompatActivity implements AdapterCredito.OnCreditoListener {
     private RecyclerView rvCreditos;
+    private String cuenta;
+    private AdapterCredito adaptador;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +45,10 @@ public class Inicio extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         rvCreditos = findViewById(R.id.rVCreditos);
+        cuenta = getIntent().getStringExtra("cuenta");
+
+        //Adaptador que contendrá las cuotas del crédito
+        adaptador = new AdapterCredito(this);
 
         setAdapterCreditos(rvCreditos);
 
@@ -51,7 +58,6 @@ public class Inicio extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        setAdapterCreditos(rvCreditos);
     }
 
     public void setAdapterCreditos(RecyclerView rvCreditos){
@@ -65,18 +71,16 @@ public class Inicio extends AppCompatActivity {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        String cuenta = getIntent().getStringExtra("cuenta");
         APIService apiService = retrofit.create(APIService.class);
 
-        Call<List<Credito>> result = apiService.getCreditos(Integer.valueOf(cuenta));
-        result.enqueue(new Callback<List<Credito>>() {
+        Call<List<Credito>> creditosRquest = apiService.getCreditos(Integer.valueOf(cuenta));
+
+        creditosRquest.enqueue(new Callback<List<Credito>>() {
             @Override
             public void onResponse(Call<List<Credito>> call, Response<List<Credito>> response) {
-                //Adaptador que contendrá las cuotas del crédito
-                AdapterCredito adaptador = new AdapterCredito();
-                //Snackbar.make(findViewById(R.id.containerInicio), "Lllega al servicio", Snackbar.LENGTH_LONG).show();
                 for(int x = 0; x < response.body().size(); x++){
                     Credito credito = new Credito();
+                    credito.setId(response.body().get(x).getId());
                     credito.setFechaVencimiento(response.body().get(x).getFechaVencimiento());
                     credito.setMonto(response.body().get(x).getMonto());
                     credito.setSaldo(response.body().get(x).getSaldo());
@@ -115,10 +119,16 @@ public class Inicio extends AppCompatActivity {
                 return true;
             case R.id.action_transacion:
                 Intent transaccion = new Intent(Inicio.this, Transaccion.class);
+                transaccion.putExtra("origen", cuenta);
                 startActivityForResult(transaccion, 1);
                 return true;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onCreditoClick(int credito) {
+        System.out.println("Ha seleccionado el crédito #"+credito);
     }
 }

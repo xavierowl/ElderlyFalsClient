@@ -33,7 +33,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/eMonto"
+                    android:id="@+id/eClave"
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
                     android:inputType="text">
@@ -49,14 +49,46 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/eCuentaDestino"
+                    android:id="@+id/eClaveRepeticion"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:inputType="text">
+                </com.google.android.material.textfield.TextInputEditText>
+            </com.google.android.material.textfield.TextInputLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nombre de institución"
+                style="@android:style/TextAppearance.Large"
+                android:layout_gravity="start"/>
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/eInstitucion"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:inputType="text">
+                </com.google.android.material.textfield.TextInputEditText>
+            </com.google.android.material.textfield.TextInputLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Número de identificación"
+                style="@android:style/TextAppearance.Large"
+                android:layout_gravity="start"/>
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/eNumeroIdentificacion"
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
                     android:inputType="text">
                 </com.google.android.material.textfield.TextInputEditText>
             </com.google.android.material.textfield.TextInputLayout>
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btnTransferir"
+                android:id="@+id/btnCambio"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Confirmar">

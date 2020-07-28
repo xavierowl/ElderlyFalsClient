@@ -1,4 +1,4 @@
-package com.example.mashicommits.models;
+package com.example.mashicommits.enums;
 
 /**
  * Este enum guarda las constantes 
